@@ -131,6 +131,30 @@ create table classes (
 
 -- delete cascade delete all the classes associated with it once the foreign key is deleted
 
+-- Own practice creating feedback table
+create table feedback (
+    feedback_id int unsigned auto_increment primary key,
+    title varchar(200) not null,
+    content text not null,
+    date_posted datetime not null,
+    student_id int unsigned not null,
+    foreign key (student_id) references students(student_id),
+    class_id int unsigned not null,
+    foreign key (class_id) references classes(class_id),
+    feedback_status_id int unsigned not null,
+    foreign key (feedback_status_id) references feedback_statuses(feedback_status_id)
+) engine=innodb;
+
+insert into feedback (title, content, date_posted, student_id, class_id, feedback_status_id) values
+    ('HP3703', 'Class need longer breaks in between', '2021-06-21', 1, 1, 1),
+    ('HP4204','Need breaks in between class','2021-04-09',5,1,3),
+    ('HP1001','Lecturer is unclear','2020-02-12',3,1,2);
+
+delete from feedback where feedback_id = 2;
+
+alter table feedback modify column date_posted date;
+
+
 
 
 -- ==============
@@ -266,3 +290,5 @@ update students set bio = "Stays in AMK" where student_id = 2;
 
 
 -- DDL = Data Definition Language => create table, update table, insert into
+
+
