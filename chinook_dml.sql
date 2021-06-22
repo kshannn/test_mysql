@@ -53,6 +53,11 @@ select(sum(Total)- select)
 
 -- 10
 
-select Title as "Album Title", Genre.Name as "Genre", Milliseconds from Track 
+select Title as "Album Title", Genre.Name as "Genre", avg(Milliseconds) from Track 
     join Album on Track.AlbumId = Album.AlbumId
-    join Genre on Track.GenreId = Genre.GenreId;
+    join Genre on Track.GenreId = Genre.GenreId
+    
+    group by Title, Genre.Name;
+    
+
+
