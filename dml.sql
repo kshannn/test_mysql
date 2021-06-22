@@ -244,5 +244,5 @@ select * from customers where customerNumber NOT IN
 
 
 /* Find all the products that have not been ordered before */
-select * from products where 
- productCode not in (SELECT distinct productCode FROM orderdetails)
+select * from products 
+	where productCode not in (SELECT distinct productCode FROM orderdetails)
