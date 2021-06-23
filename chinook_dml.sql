@@ -17,9 +17,11 @@ select * from Artist
 select * from Employee
     where Title like "%sales%";
 
--- 5
- select * from Genre
-    where Name = "easy listening";
+-- 5 (did wrongly)
+select Track.Name from Track join Genre on Track.GenreId = Genre.GenreId where Genre.Name = "Easy Listening";
+
+select Track.Name from Track where GenreId in 
+    (Select GenreId from Genre where Name = "easy listening");
 
 -- 6 
 select Title as "Album", Track.Name as "Track", Genre.Name as "Genre" from Track
@@ -34,14 +36,15 @@ select BillingCountry, avg(Total) from Invoice
 
 select BillingCountry, avg(Total) from Invoice 
     group by BillingCountry
-    having avg(Total) >= 1.00;
+    having avg(Total) >= 5.50;
 
 
 -- 9 (not sure how to write)
-select Invoice.CustomerId, avg(Total), sum(Total), Customer.Country from Invoice
+select Invoice.CustomerId, avg(Total), Customer.Country from Invoice
     join Customer on Invoice.CustomerId = Customer.CustomerId
-    where Country = "Germany" AND sum(Total) = (select sum(Total) from Invoice where sum(Total)>10) 
-    group by Invoice.CustomerId, Customer.Country;
+    where Country = "Germany" 
+    group by Invoice.CustomerId, Customer.Country
+    having sum(Total) > 10;
 
 AND sum(Total) > 10
 need to use sub-query
@@ -53,9 +56,10 @@ select(sum(Total)- select)
 
 -- 10
 
-select Title as "Album Title", Genre.Name as "Genre", avg(Milliseconds) from Track 
+select Title as "Album Title", Genre.Name as "Genre", avg(Milliseconds)/60000 from Track 
     join Album on Track.AlbumId = Album.AlbumId
     join Genre on Track.GenreId = Genre.GenreId
+    where Genre.Name = "Jazz"
     
     group by Title, Genre.Name;
     
