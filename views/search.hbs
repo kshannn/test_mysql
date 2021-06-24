@@ -1,0 +1,33 @@
+{{#extends 'base'}}
+
+{{#block 'content'}}
+
+<h1>Movies</h1>
+
+<form method="GET">
+    <input type="text" placeholder="Search term" name="search_terms" class="form-control"/>
+    <input type="submit" value="Search" class="btn btn-primary mt-3" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Actor ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Last Update</th>
+        </tr>
+    </thead>
+
+    {{#each actors}}
+    <tr>
+        <td>{{this.actor_id}}</td>
+        <td>{{this.first_name}}</td>
+        <td>{{this.last_name}}</td>
+        <td>{{this.last_update}}</td>
+    </tr>
+    {{/each}}
+</table>
+{{/block}}
+
+{{/extends}}

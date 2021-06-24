@@ -1,0 +1,35 @@
+{{#extends 'base'}}
+
+{{#block 'content'}}
+
+<h1>Countries</h1>
+
+<form method="POST">
+    <label>Create Country</label>
+    <input type="text" name="country" />
+    <button>Submit</button>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Country ID</th>
+            <th>Country</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    {{#each countries}}
+    <tr>
+        <td>{{this.country_id}}</td>
+        <td>{{this.country}}</td>
+        <td>
+            <a href="/countries/{{this.country_id}}/edit" class='btn btn-primary' >Edit</a>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+{{/block}}
+
+{{/extends}}

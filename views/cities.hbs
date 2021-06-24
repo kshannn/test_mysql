@@ -1,0 +1,26 @@
+{{#extends 'base'}}
+
+{{#block 'content'}}
+
+<h1>City</h1>
+<table class="table">
+    <thead>
+        <th>City ID</th>
+        <th>City</th>
+        <th>Country ID</th>
+        <th>Country</th>
+    </thead>
+
+    {{#each cities}}
+     <tr>
+        <td>{{this.city_id}}</td>
+        <td>{{this.city}}</td>
+        <td>{{this.country_id}}</td>
+        <td>{{this.country}}</td>
+    </tr>
+    {{/each}}
+</table>
+
+{{/block}}
+
+{{/extends}}
